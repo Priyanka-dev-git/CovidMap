@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="wrapper" id="main-container"></div>
+				
+<script>
+	$(document).ready(function () {
+		var API_URL = 'https://api.covid19india.org/v4/data.json';
+		function ajaxCallTop(url,displayFun){
+			
+		$.ajax({
+				url: url,
+				dataType: 'json',
+				cache: true,		
+				timeout: 5000,
+				success: function (dataResult) {
+					//displayTopScore(dataResult);
+					displayFun(dataResult);
+				}
+				
+			 });
+		}
+		
+		
+		function displayFun(dataResult)
+		{   var Chhatisgarh = dataResult.CH;
+			var Gujarat = dataResult.GJ;
+			var Karnataka = dataResult.KA;
+            var Kerala = dataResult.KL;
+            var madhyapradesh = dataResult.MP;
+            var Maharastra = dataResult.MH;
+            var Rajasthan = dataResult.RJ;
+            var tamilnadu = dataResult.TN;
+            var Uttarpradesh = dataResult.UP;
+			var dynamicTemplate = "";
+			dynamicTemplate += ' <div class="fixed one"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += '<span class="bkl">COVID-19</span>  Current Preparedness In India.';
+			dynamicTemplate += '</h3>';
+			dynamicTemplate += '<p>Analyzed the worst affected districts, those with more than 5000 confirmed cases and having a doubling rate of 15 days or less. The analysis reveals that Andhra Pradesh is out of control with the rapid growth of cases in a state with already 2 lakh cases.</p>';
+			dynamicTemplate += '<p>Out of 22 national districts, which fit our criteria, all 13 districts of Andhra Pradesh are included. With a doubling rate between 7 and 15 days, AP is far exceeding the national rate of over 23 days. At this rate, AP can expect another 200,000 cases by Aug 19.</p>';
+			dynamicTemplate += '<p>Scroll to view details</p>';
+			dynamicTemplate += '</div>';
+            //chhatigarh
+            dynamicTemplate += ' <div class="fixed two"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Chhatisgarh</span> Confirmed: ${Chhatisgarh.total.confirmed}; Recovered: ${Chhatisgarh.total.recovered}; Death: ${Chhatisgarh.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>The Helpline Number for corona-virus : 0771-2235091 or 104</p>';
+			dynamicTemplate += '</div>';
+            //Gujarat
+            dynamicTemplate += ' <div class="fixed three"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Gujarat</span> Confirmed: ${Gujarat.total.confirmed}; Recovered: ${Gujarat.total.recovered}; Death: ${Gujarat.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>(24/7)The Helpline Number for corona-virus: 079-23250818 (Health), 079-23251900 (SEOC)</p>';
+			dynamicTemplate += '</div>';
+			//Karnataka
+			dynamicTemplate += ' <div class="fixed four"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Karnataka</span> Confirmed: ${Karnataka.total.confirmed}; Recovered: ${Karnataka.total.recovered}; Death: ${Karnataka.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>Coronavirus Queries: National Helpline Number – 1075 / 1800-112-545 / +91-11-2397-8046</p>';
+			dynamicTemplate += '</div>';
+
+			//Kerala
+			dynamicTemplate += ' <div class="fixed five"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Kerala</span> Confirmed: ${Kerala.total.confirmed}; Recovered: ${Kerala.total.recovered}; Death: ${Kerala.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>State call center: Helpline 0471 2309250, 51, 52, 53</p>';
+			dynamicTemplate += '</div>';
+             //madhyapradesh
+            dynamicTemplate += ' <div class="fixed six"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">madhyapradesh</span> Confirmed: ${madhyapradesh.total.confirmed}; Recovered: ${madhyapradesh.total.recovered}; Death: ${madhyapradesh.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>Central Helpline Number for corona-virus: - +91-11-23978046</p>';
+			dynamicTemplate += '</div>';
+			//Maharastra
+			dynamicTemplate += ' <div class="fixed seven"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Maharastra</span> Confirmed: ${Maharastra.total.confirmed}; Recovered: ${Maharastra.total.recovered}; Death: ${Maharastra.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>(24/7)The Helpline Number for corona-virus: 079-23250818 (Health), 079-23251900 (SEOC)</p>';
+			dynamicTemplate += '</div>';
+             //Rajasthan
+            dynamicTemplate += ' <div class="fixed eight"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Rajasthan</span> Confirmed: ${Rajasthan.total.confirmed}; Recovered: ${Rajasthan.total.recovered}; Death: ${Rajasthan.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>Helpline Number: 0141-2225624/2225000 Toll Free No: 104/108</p>';
+			dynamicTemplate += '</div>';
+			//tamilnadu
+			dynamicTemplate += ' <div class="fixed nine"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Tamilnadu</span> Confirmed: ${tamilnadu.total.confirmed}; Recovered: ${tamilnadu.total.recovered}; Death: ${tamilnadu.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>CORONA ( COVID 19 ) HELPLINE : 044-29510500 , 25615025 , 28414513 , 28593990</p>';
+			dynamicTemplate += '</div>';
+			//Uttarpradesh
+			dynamicTemplate += ' <div class="fixed ten"></div>';
+			dynamicTemplate += ' <div class="scroll">';
+			dynamicTemplate += ' <h3 class="detail-text box arrow-top">';
+            dynamicTemplate += `<i class="fa fa-dot-circle-o blink-active"></i> <span class="bkl">Uttarpradesh</span> Confirmed: ${Uttarpradesh.total.confirmed}; Recovered: ${Uttarpradesh.total.recovered}; Death: ${Uttarpradesh.total.deceased}</h3>`;
+			
+			dynamicTemplate += '<p>CORONA ( COVID 19 ) HELPLINE : 044-29510500 , 25615025 , 28414513 , 28593990</p>';
+			dynamicTemplate += '</div>';
+
+			$("#main-container").html(dynamicTemplate);
+		}
+		
+		ajaxCallTop(API_URL,displayFun);
+		
+	});
+</script>
+<style>
+            html,
+      body {
+        height: 100%;
+      }
+      .wrapper {
+        height: 100%;
+        font-family: Helvetica, sans-serif;
+        line-height: 1.5;
+        word-spacing: 2px;
+        letter-spacing: 0.5px;
+      }
+      .fixed {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+        color: #eeeeee;
+        text-align: center;
+        display: table;
+
+      }
+      .fixed h2 {
+        display: table-cell;
+        vertical-align: middle;
+      }
+	  .box {
+
+    background-color: rgba(19, 59, 93, 0.74);
+    color: #000;
+    padding: 20px;
+    position: relative;
+    /* margin: 40px; */
+    /* float: left; */
+    margin: 0;
+	padding: 10px 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+	border:1px solid;
+}
+
+.bkl{text-transform:uppercase;
+	background: #000;
+	color:#fff;
+	border-radius:5px;
+	padding:5px;
+	font-size:16px;}
+	
+.scroll p{background: #f3f3f3;
+    margin: 0px;
+    padding: 5px 10px;}	
+
+.box.arrow-top:after {
+  content: " ";
+  position: absolute;
+  right: 60px;
+  top: -15px;
+  border-top: none;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #000;
+}
+
+      .one {
+        background-image: url("India.svg")
+      }
+      .two {
+        background-image: url("Chhatisgarh.svg");
+		width:100%;
+      }
+      .three {
+        background-image: url("Gujarat.svg")
+      }
+      .four {
+        background-image: url("Karnataka.svg")
+      }	 	 
+	  .five{
+        background-image: url("Kerala.svg")
+      }	 
+	  .six {
+        background-image: url("madhyapradesh.svg")
+      }	 
+	  .seven {
+        background-image: url("Maharastra.svg")
+      }	 
+	  .eight {
+        background-image: url("Rajasthan.svg")
+      }	 
+	  .nine {
+        background-image: url("Tamilnadu.svg")
+      }	 
+	  .ten{
+        background-image: url("Uttarpradesh.svg")
+      }	 
+	 .scroll {text-align: center;}
+ 
+	  @media (max-width: 480px) {
+       .fixed {
+        background-attachment: fixed;
+        height: 100%;
+        width: 100%;
+        color: #eeeeee;
+        text-align: center;
+        display: table;
+		background-repeat:no-repeat;
+        background-size:contain;
+        background-position:center;
+      }
+	  .scroll {
+       
+        padding: 10px 10px;
+        color: #666666;
+      }
+	  h3.detail-text {
+       font-size: 15px;
+}
+}
+.blink-active {
+    animation: 1s blinker linear infinite;
+    -webkit-animation: 1s blinker linear infinite;
+    -moz-animation: 1s blinker linear infinite;
+    color: red;
+}
+@keyframes blinker {
+    0% {<!--from w w w .  j  a va 2  s. c  o m-->
+        transform: scale(1);
+        opacity: .25
+    }
+    50% {
+        transform: scale (1, 5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: .25;
+    }
+}
+
+
+    </style>
